@@ -3,16 +3,9 @@ defmodule Jobber do
   Documentation for `Jobber`.
   """
 
-  @doc """
-  Hello world.
+  alias Jobber.{JobRunner, Job}
 
-  ## Examples
-
-      iex> Jobber.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def start_job(args) do
+    DynamicSupervisor.start_child(JobRunner, {Job, args})
   end
 end
